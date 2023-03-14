@@ -1,0 +1,134 @@
+@import "../colors";
+
+.movie-list {
+  padding: 0 30px;
+
+  .movie-item {
+    max-width: 400px;
+    border: 1px solid $color-N500;
+    margin-bottom: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+
+    .rank-wrap {
+      position: relative;
+
+      .rank-triangle {
+        position: absolute;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 56px 56px 0 0;
+        border-color: #2ecc71 transparent transparent transparent;
+      }
+
+      .rank-text {
+        position: absolute;
+        z-index: 2;
+        top: 5px;
+        left: 8px;
+        color: white;
+        font-weight: 800;
+        font-size: 18px;
+      }
+
+      &.first-pos {
+        .rank-triangle {
+          border-width: 80px 80px 0 0;
+          border-color: #e74c3c transparent transparent transparent;
+        }
+
+        .rank-text {
+          font-size: 45px;
+          top: -5px;
+          left: 10px;
+        }
+      }
+
+      &.second-pos {
+        .rank-triangle {
+          border-width: 64px 64px 0 0;
+          border-color: #e67e22 transparent transparent transparent;
+        }
+
+        .rank-text {
+          font-size: 34px;
+          top: -3px;
+          left: 8px;
+        }
+      }
+
+      &.third-pos {
+        .rank-triangle {
+          border-width: 60px 60px 0 0;
+          border-color: #f1c40f transparent transparent transparent;
+        }
+
+        .rank-text {
+          font-size: 30px;
+          top: 0px;
+          left: 8px;
+        }
+      }
+    }
+
+    .image-wrap {
+      overflow: hidden;
+    }
+
+    &-description {
+      padding: 8px;
+
+      .movie-title {
+        width: 100;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      .movie-info {
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+
+        span {
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 0 36px -10px #30e6f6;
+      transition: 250ms ease-in-out;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .movie-list {
+    .movie-list-item-col {
+      display: flex;
+      justify-content: center;
+    }
+
+    .movie-item {
+      width: 300px;
+    }
+  }
+}
+
+@media all and (max-width: 280px) {
+  .movie-list {
+    .movie-item {
+      width: 200px;
+    }
+  }
+}
