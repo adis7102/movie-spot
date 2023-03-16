@@ -1,24 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import dayjs from "dayjs";
-import clsx from "clsx";
-
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import Button from "react-bootstrap/Button";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import { BASE_URL, API_KEY } from "../constants";
 import { MovieList, MovieListItem, InitialState } from "../types";
 
-import Navbar from "../components/Navbar";
-import ScrollToTop from "../components/ScrollToTop";
+import MovieListComponent from "../components/MovieList";
 
 import { wrapper } from "../store";
 import {
@@ -27,166 +16,83 @@ import {
   getTopRatedData,
 } from "../store/slices/topRated";
 
-type Props = {
-  movieListData: MovieListItem[];
-};
+type Props = {};
 
-// const ModalDownload = dynamic(() => import("../components/ModalDownload"));
-
-const Popular: NextPage<Props> = (props) => {
+const Popular: NextPage<Props> = () => {
   const dispatch = useDispatch();
   const topRatedStateData: InitialState = useSelector(getTopRatedData);
 
-  const [currentPage, setCurrentPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false)
 
-  const handleLoadMore = async (page: number) => {
-    const resMovieList = await fetch(
-      `${BASE_URL}/top_rated?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&page=${
-        page + 1
-      }&with_watch_monetization_types=flatrate`,
-      { method: "GET" }
-    );
-    const movieListData: MovieList = await resMovieList.json();
-
-    const resultsList: object[] = [
-      ...topRatedStateData.movieList,
-      ...movieListData?.results,
-    ];
-
-    dispatch(setMovieList(resultsList));
-    setCurrentPage(page + 1);
+  const handleLoadMore = async () => {
+    try {
+      setLoading(true)
+      const resMovieList = await fetch(
+        `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&page=${
+          currentPage + 1
+        }`,
+        { method: "GET" }
+      );
+      const movieListData: MovieList = await resMovieList.json();
+  
+      const resultsList: MovieListItem[] = [
+        ...topRatedStateData.movieList,
+        ...movieListData?.results,
+      ];
+  
+      dispatch(setMovieList(resultsList));
+      setCurrentPage(currentPage + 1);
+      setLoading(false)
+    } catch (error) {
+      console.error(error)
+    }
   };
-
-  console.log(topRatedStateData, 'ini nih')
 
   return (
     <div>
       <Head>
-        <title>Movie Spot!</title>
+        <title>Movie Spot! | Top Rated Movies</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <ScrollToTop />
-      <div className="movie-list">
-        <Row>
-          {(topRatedStateData?.movieList || []).map(
-            (item: MovieListItem, index) => (
-              <Col key={index} xs={8} md={4} lg={3} xxl={2}>
-                <Link href={`/${item?.id}`} prefetch={false}>
-                  <div className="movie-item">
-                    <div className="image-wrap">
-                      <div
-                        className={clsx("rank-wrap", {
-                          "first-pos": index === 0,
-                          "second-pos": index === 1,
-                          "third-pos": index === 2,
-                        })}
-                      >
-                        <div className="rank-triangle" />
-                        <div className="rank-text">{index + 1}</div>
-                      </div>
-                      <Image
-                        alt={`Music SPOT! | ${item?.title}`}
-                        src={`https://image.tmdb.org/t/p/w300${item?.poster_path}`}
-                        width={400}
-                        height={570}
-                      />
-                    </div>
-                    <div className="movie-item-description">
-                      <div className="movie-title">{item?.title}</div>
-                      <div className="movie-info">
-                        <span>Release date:</span>{" "}
-                        {dayjs(item?.release_date).format("DD MMM YYYY")}
-                      </div>
-                      <div className="movie-info">
-                        <span>Popularity:</span> {item?.popularity}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </Col>
-            )
-          )}
-        </Row>
-        {/* <div className="movie-list-wrap">
-          {(topRatedStateData?.movieList || []).map(
-            (item: MovieListItem, index) => (
-              <Fragment key={index}>
-                <Link href={`/${item?.id}`} prefetch={false}>
-                  <div className="movie-item">
-                    <div className="image-wrap">
-                      <div
-                        className={clsx("rank-wrap", {
-                          "first-pos": index === 0,
-                          "second-pos": index === 1,
-                          "third-pos": index === 2,
-                        })}
-                      >
-                        <div className="rank-triangle" />
-                        <div className="rank-text">{index + 1}</div>
-                      </div>
-                      <Image
-                        alt={`Music SPOT! | ${item?.title}`}
-                        src={`https://image.tmdb.org/t/p/w300${item?.poster_path}`}
-                        width={270}
-                        height={370}
-                      />
-                    </div>
-                    <div className="movie-item-description">
-                      <div className="movie-title">{item?.title}</div>
-                      <div className="movie-info">
-                        <span>Release date:</span>{" "}
-                        {dayjs(item?.release_date).format("DD MMM YYYY")}
-                      </div>
-                      <div className="movie-info">
-                        <span>Popularity:</span> {item?.popularity}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-                {index + 1 === (topRatedStateData?.movieList || []).length && (
-                  <Button size="lg" onClick={() => handleLoadMore(currentPage)}>
-                    Load More!
-                  </Button>
-                )}
-              </Fragment>
-            )
-          )}
-        </div> */}
-      </div>
+      <main>
+        <MovieListComponent
+          loading={loading}
+          loadMore={() =>
+            topRatedStateData?.totalPage > 1 ? handleLoadMore() : null
+          }
+          movieList={topRatedStateData?.movieList}
+        />
+      </main>
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async () => {
-    let urls = [];
+    let resMovieList: MovieList = {
+      page: "1",
+      results: [],
+      total_pages: 0,
+      total_results: 0,
+    };
 
-    for (let i: number = 1; i <= 5; i++) {
-      urls.push(
-        `${BASE_URL}/top_rated?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&page=${i}&with_watch_monetization_types=flatrate`
+    try {
+      const res = await fetch(
+        `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&page=1`,
+        { method: "GET" }
       );
+      resMovieList = await res.json();
+
+      store.dispatch(setMovieList(resMovieList?.results));
+      store.dispatch(setTotalPage(resMovieList?.total_pages || 0));
+    } catch (error) {
+      console.error(error);
     }
-
-    const resMovieList: MovieList[] = await Promise.all(
-      urls.map(async (url) => {
-        const res = await fetch(url, { method: "GET" });
-        return res.json();
-      })
-    );
-
-    const mappedListData: object[] = resMovieList.flatMap(
-      (item) => item.results
-    );
-
-    console.log(mappedListData)
-
-    store.dispatch(setMovieList(mappedListData));
-    store.dispatch(setTotalPage(resMovieList?.[4]?.total_pages || 0));
 
     return {
       props: {
-        movieListData: mappedListData,
+        movieListData: resMovieList,
       },
     };
   });

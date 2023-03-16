@@ -4,11 +4,13 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import popularReducer from './slices/popular';
 import topRatedReducer from './slices/topRated';
+import commonReducer from './slices/common';
 
 const makeStore = () => configureStore({
   reducer: {
     popular: popularReducer,
-    topRated: topRatedReducer
+    topRated: topRatedReducer,
+    common: commonReducer
   },
   devTools: true
 })

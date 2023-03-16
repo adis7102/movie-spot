@@ -4,10 +4,9 @@
   padding: 0 30px;
 
   .movie-item {
-    max-width: 400px;
+    max-width: 500px;
     border: 1px solid $color-N500;
     margin-bottom: 50px;
-    cursor: pointer;
     overflow: hidden;
     border-radius: 8px;
 
@@ -76,10 +75,12 @@
 
     .image-wrap {
       overflow: hidden;
+      cursor: pointer;
     }
 
     &-description {
       padding: 8px;
+      cursor: pointer;
 
       .movie-title {
         width: 100;
@@ -103,6 +104,32 @@
           font-weight: 300;
         }
       }
+
+      &:hover {
+        .movie-title {
+          color: $color-N500;
+        }
+
+        .movie-info {
+          color: $color-N500;
+
+          span {
+            color: $color-N500;
+          }
+        }
+      }
+    }
+
+    .movie-action-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      &-button {
+        max-width: 110px;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+      }
     }
 
     &:hover {
@@ -110,10 +137,47 @@
       transition: 250ms ease-in-out;
     }
   }
+
+  .load-more-button {
+    display: grid;
+    place-items: center;
+    margin-bottom: 30px;
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .movie-list {
+    .movie-item {
+      .movie-action-wrap {
+        &-button {
+          max-width: 110px;
+          margin-right: .5rem;
+          margin-bottom: .8rem;
+          
+          button {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+
+    .load-more-button {  
+      button {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 @media all and (max-width: 480px) {
   .movie-list {
+    .row {
+      .col-12 {
+        display: grid;
+        place-items: center;
+      }
+    }
+
     .movie-list-item-col {
       display: flex;
       justify-content: center;
@@ -122,6 +186,12 @@
     .movie-item {
       width: 300px;
     }
+
+    .load-more-button {  
+      button {
+        font-size: 1rem;
+      }
+    }
   }
 }
 
@@ -129,6 +199,12 @@
   .movie-list {
     .movie-item {
       width: 200px;
+    }
+
+    .load-more-button {  
+      button {
+        font-size: 1rem;
+      }
     }
   }
 }

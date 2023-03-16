@@ -1,0 +1,288 @@
+@import "../../colors";
+
+.movie-detail {
+  &-wrap {
+    padding: 50px;
+    display: grid;
+    place-items: center;
+
+    .movie-detail-box {
+      overflow: hidden;
+      max-width: 1440px;
+      padding: 20px;
+
+      &-top {
+        display: flex;
+
+        .detail-description {
+          padding: 20px;
+
+          .detail-title {
+            h1 {
+              font-size: 2.5rem;
+            }
+          }
+
+          .detail-text {
+            font-size: 1.5rem;
+            line-height: 32px;
+
+            span {
+              font-size: 1.5rem;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+
+      &-bottom {
+        max-width: 1000px;
+
+        .detail-overview {
+          margin-top: 30px;
+
+          span {
+            font-size: 1.5rem;
+          }
+
+          &-text {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+
+    .action-button {
+      margin-top: 30px;
+      margin-bottom: 50px;
+      display: flex;
+      align-items: center;
+
+      .favourite-text {
+        font-size: 1.5rem;
+        margin-right: 20px;
+      }
+
+      button {
+        margin-right: 20px;
+      }
+    }
+
+    .comment-list {
+      width: 1000px;
+
+      &-title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+
+      &-item {
+        width: 100%;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid $color-N500;
+
+        &-sender {
+          text-decoration: underline;
+          margin-bottom: 10px;
+        }
+
+        &-comment {
+          font-size: 1.2rem;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1440px) {
+  .movie-detail {
+    &-wrap {
+      .movie-detail-box {
+        &-top {
+          .detail-description {
+            .detail-title {
+              h1 {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .movie-detail {
+    &-wrap {
+      padding: 20px;
+
+      .movie-detail-box {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .movie-detail {
+    &-wrap {
+      padding: 20px;
+
+      .movie-detail-box {
+        padding-top: 0px;
+
+        &-top {
+          flex-direction: column;
+
+          .detail-image {
+            display: grid;
+            place-items: center;
+            margin-bottom: 40px;
+          }
+
+          .detail-description {
+            padding: 0;
+
+            .detail-title {
+              h1 {
+                font-size: 1.8rem;
+              }
+            }
+
+            .detail-text {
+              font-size: 1rem;
+
+              span {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+
+        &-bottom {
+          .detail-overview {
+            span {
+              font-size: 1.2rem;
+            }
+
+            &-text {
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .movie-detail {
+    &-wrap {
+      padding: 20px;
+
+      .movie-detail-box {
+        padding: 0px;
+
+        &-top {
+          flex-direction: column;
+
+          .detail-image {
+            margin-bottom: 20px;
+          }
+
+          .detail-description {
+            padding: 0;
+
+            .detail-title {
+              h1 {
+                font-size: 1.8rem;
+              }
+            }
+
+            .detail-text {
+              font-size: 1rem;
+
+              span {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+
+        &-bottom {
+          .detail-overview {
+            span {
+              font-size: 1rem;
+            }
+
+            &-text {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+
+      .action-button {
+        button {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 280px) {
+  .movie-detail {
+    &-wrap {
+      .movie-detail-box {
+        &-top {
+          .detail-image {
+            margin-bottom: 20px;
+          }
+
+          .detail-description {
+            padding: 0;
+
+            .detail-title {
+              h1 {
+                font-size: 1.2rem;
+              }
+            }
+
+            .detail-text {
+              font-size: 0.8rem;
+
+              span {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+
+        &-bottom {
+          .detail-overview {
+            span {
+              font-size: 0.8rem;
+            }
+
+            &-text {
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+
+      .action-button {
+        button {
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}

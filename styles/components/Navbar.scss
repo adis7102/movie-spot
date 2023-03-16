@@ -1,0 +1,171 @@
+.navbar-comp {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  z-index: 5;
+  background-color: #2c3e50;
+
+  &-title {
+    font-weight: 800;
+    color: white;
+    font-size: 48px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  &-routing {
+    display: flex;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+    
+    &-button {
+      margin-right: 20px;
+
+      p {
+        font-size: 28px;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        p {
+          font-size: 34px;
+        }
+      }
+    }
+
+    &-user-detail {
+      cursor: pointer;
+
+      &:hover {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .navbar-comp {
+    &-title {
+      font-size: 2rem;
+    }
+
+    &-routing {
+      p {
+        font-size: 1rem;
+      }
+
+      &-login {
+        button {
+          padding: 5px 13px;
+          font-size: 1rem;
+        }
+      }
+    }
+
+  }
+}
+
+@media all and (max-width: 480px) {
+  .navbar-comp {
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-routing {
+      p {
+        font-size: 1rem;
+      }
+
+      &-user-detail {
+        p {
+          font-size: .5rem;
+        }
+      }
+  
+      &-login {
+        button {
+          padding: 5px 13px;
+          font-size: 1rem;
+        }
+      }
+    }
+
+  }
+}
+
+@media all and (max-width: 320px) {
+  .navbar-comp {
+    padding: 20px 20px;
+
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-routing {
+      p {
+        font-size: 1rem;
+      }
+
+      &-button {
+        margin-right: 10px;
+      }
+
+      &-user-detail {
+        p {
+          font-size: .5rem;
+        }
+      }
+  
+      &-login {
+        button {
+          padding: 5px 13px;
+          font-size: .8rem;
+        }
+      }
+    }
+
+  }
+}
+
+@media all and (max-width: 280px) {
+  .navbar-comp {
+    padding: 10px 20px;
+
+    &-title {
+      font-size: 1.3rem;
+    }
+
+    &-routing {
+      p {
+        font-size: .8rem;
+      }
+
+      &-button {
+        margin-right: 8px;
+      }
+
+      &-user-detail {
+        p {
+          font-size: .5rem;
+        }
+      }
+
+      &-login {
+        button {
+          padding: 5px 13px;
+          font-size: .5rem;
+        }
+      }
+    }
+  }
+}

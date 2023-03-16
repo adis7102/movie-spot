@@ -1,0 +1,62 @@
+.user-page {
+  &-head {
+    padding: 0 40px;
+    margin-bottom: 30px;
+
+    &-title {
+      font-size: 2rem;
+    }
+
+    &-subtitle {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .user-page {
+    &-head {
+      &-title {
+        font-size: 1.6rem;
+      }
+  
+      &-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  .user-page {
+    padding-top: 0;
+
+    &-head {
+      padding: 0 40px;
+
+      &-title {
+        font-size: 1.3rem;
+      }
+  
+      &-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 280px) {
+  .user-page {
+    &-head {
+      padding: 0 40px;
+
+      &-title {
+        font-size: 1.2rem;
+      }
+  
+      &-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+}

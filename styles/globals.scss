@@ -1,18 +1,22 @@
 @import "./fonts";
+@import "./colors";
 
-@import "./HomePageStyles/HomePage-styles.scss";
-@import "../styles/AboutPageStyles/AboutPage-styles.scss";
-@import "../styles/MovieDetailPageStyles/MovieDetailPage-styles.scss";
-@import "../styles/NavbarStyles/Navbar-styles.scss";
-@import "../styles/ScrollToTopStyles/ScrollToTop-styles.scss";
+@import "./pages/HomePageStyles/HomePage-styles.scss";
+@import "./pages/MovieDetailPageStyles/MovieDetailPage-styles.scss";
+@import "./pages/UserPageStyles/UserPage-styles.scss";
 
+@import "./components/Loading.scss";
+@import "./components/Navbar.scss";
+@import "./components/ScrollToTop.scss";
+@import "./components/ToastComponent.scss";
 @import "./components/MovieList.scss";
+@import "./components/Modal.scss";
 
 html,
 body {
   padding: 0;
   font-family: "BebasNue-Regular" !important;
-  background-color: #2c3e50 !important;
+  background-color: $color-background !important;
 }
 
 body {
@@ -41,11 +45,14 @@ a {
   box-sizing: border-box;
 }
 
-// @media all and (max-width: 280px) {
-//   html,
-//   body {
-//     padding: 0;
-//     font-family: "BebasNue-Regular" !important;
-//     background-color: #2c3e50 !important;
-//   }
-// }
+@media all and (max-width: 480px) {
+  body {
+    margin-top: 90px;
+  }
+}
+
+@media all and (max-width: 280px) {
+  body {
+    margin-top: 60px;
+  }
+}

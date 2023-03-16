@@ -1,0 +1,9 @@
+@import '../colors';
+
+.toast-container {
+  .toast {
+    .toast-body {
+      color: $color-background;
+    }
+  }
+}

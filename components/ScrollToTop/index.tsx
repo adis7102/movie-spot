@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ScrollToTop = () => {
+const ScrollToTop: React.FC = () => {
 
   const scrollToTop = (): void =>{
     window.scrollTo({
