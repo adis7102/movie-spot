@@ -1,30 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Movie Spot!
+
+Movie Spot! is a web that contain list of Movie Data from The Movie DB API.
+
+This web is using `NEXT.JS`.
+
+In this page you can:
+* Search Movies by title.
+* Get a list of movies sorted by Popularity.
+* Get a list of movies sorted by Top Rated.
+
+## Table of Contents
+1. [Requirements](#requirements)
+2. [Getting Started](#getting-started)
+
+## Requirements
+* node `v14.15.1 (LTS)`
+* npm `6.14.9`
+
 
 ## Getting Started
 
-First, run the development server:
+After confirming that your development environment meets the specified [requirements](#requirements),
+you can start the site by running these commands:
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm install                   # Install project dependencies
+$ npm run dev                     # Compile and launch on development environment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+While developing, you will probably rely mostly on `npm run dev`; however, there are additional scripts at your disposal:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+|`npm run <script>`|Description|
+|------------------|-----------|
+|`dev` |Serves your app at `localhost:3000`.|
+|`build`|Compiles the application for deployment purpose.|
+|`start`|Serves your server in `production` mode but requires `next build` (usually used for running the app in production).|
